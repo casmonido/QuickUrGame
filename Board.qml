@@ -7,8 +7,14 @@ Rectangle {
     property int rows: 3
     visible: true
     width: columns*unit+(columns+1)*margin
-    height: rows*unit+(rows+1)*margin
-    color: "blue"
+    height: (rows+2)*unit+(rows+1)*margin
+    color: "#19468e"
+    StartingSquare {
+        anchors.top: parent.top
+    }
+    StartingSquare {
+        anchors.bottom: parent.bottom
+    }
     Square {//0
         image: "square4.png"
         bx: 0
