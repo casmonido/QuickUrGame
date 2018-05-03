@@ -8,11 +8,6 @@ Window {
     height: 600
     title: qsTr("The royal game of Ur")
 
-    Square {
-        image: "square1.png"
-        anchors.centerIn: parent
-    }
-
     Board {
         anchors.centerIn: parent
     }
