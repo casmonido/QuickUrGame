@@ -13,14 +13,14 @@ Rectangle {
     ParentAnimation {
         id: parentAnim
         target: piece
-        newParent: b1
+        newParent: parent.parent.destinationSquare(crossedPathLength, 1)
         NumberAnimation {
             target: piece
             properties: "opacity"
             from: 0.1
             to: 1.0
             easing.type: Easing.OutBack
-            duration: 1000
+            duration: 2000
         }
     }
 
@@ -29,6 +29,7 @@ Rectangle {
         acceptedButtons: Qt.LeftButton|Qt.RightButton
         onPressed: {
             parentAnim.start()
+            piece.crossedPathLength++
         }
     }
 }

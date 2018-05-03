@@ -1,6 +1,13 @@
 import QtQuick 2.0
 
 Rectangle {
+    function destinationSquare(crossedPathLength, pathToCross) {
+        return whiteRects[crossedPathLength+pathToCross];
+    }
+    property list<Rectangle> whiteRects
+    property list<Rectangle> blackRects
+    whiteRects: [sw, s3, s2, s1, s0, s6, s7, s8, s9, s10, s11, s12, s13, s5, s4]
+    blackRects: [sb, s17, s16, s15, s14, s6, s7, s8, s9, s10, s11, s12, s13, s13, s19, s18]
     property int margin: parent.width/200
     property int unit: parent.width/15
     property int columns: 8
@@ -10,111 +17,129 @@ Rectangle {
     height: (rows+2)*unit+(rows+1)*margin
     color: "#19468e"
     StartingSquare {
-        id: b0 //black
+        id: sw
         anchors.top: parent.top
     }
     StartingSquare {
-        id: w0 //white
+        id: sb
         anchors.bottom: parent.bottom
     }
     Square {//0
-        id: b1
+        id: s0
         image: "square4.png"
         bx: 0
         by: 0
     }
     Square {//1
-        id: b2
+        id: s1
         image: "square5.png"
         bx: 1
         by: 0
     }
     Square {//2
+        id: s2
         image: "square1.png"
         bx: 2
         by: 0
     }
     Square {//3
+        id: s3
         image: "square5.png"
         bx: 3
         by: 0
     }
     Square {//4
+        id: s4
         image: "square4.png"
         bx: 6
         by: 0
     }
     Square {//5
+        id: s5
         image: "square2.png"
         bx: 7
         by: 0
     }
     Square {//6
+        id: s6
         image: "square3.png"
         bx: 0
         by: 1
     }
     Square {//7
+        id: s7
         image: "square1.png"
         bx: 1
         by: 1
     }
     Square {//8
+        id: s8
         image: "square6.png"
         bx: 2
         by: 1
     }
     Square {//9
+        id: s9
         image: "square4.png"
         bx: 3
         by: 1
     }
     Square {//10
+        id: s10
         image: "square1.png"
         bx: 4
         by: 1
     }
     Square {//11
+        id: s11
         image: "square6.png"
         bx: 5
         by: 1
     }
     Square {//12
+        id: s12
         image: "square5.png"
         bx: 6
         by: 1
     }
     Square {//13
+        id: s13
         image: "square1.png"
         bx: 7
         by: 1
     }
     Square {//14
+        id: s14
         image: "square4.png"
         bx: 0
         by: 2
     }
     Square {//15
+        id: s15
         image: "square5.png"
         bx: 1
         by: 2
     }
     Square {//16
+        id: s16
         image: "square1.png"
         bx: 2
         by: 2
     }
     Square {//17
+        id: s17
         image: "square5.png"
         bx: 3
         by: 2
     }
     Square {//18
+        id: s18
         image: "square4.png"
         bx: 6
         by: 2
     }
     Square {//19
+        id: s19
         image: "square2.png"
         bx: 7
         by: 2
