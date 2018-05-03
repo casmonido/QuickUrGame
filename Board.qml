@@ -10,17 +10,21 @@ Rectangle {
     height: (rows+2)*unit+(rows+1)*margin
     color: "#19468e"
     StartingSquare {
+        id: b0 //black
         anchors.top: parent.top
     }
     StartingSquare {
+        id: w0 //white
         anchors.bottom: parent.bottom
     }
     Square {//0
+        id: b1
         image: "square4.png"
         bx: 0
         by: 0
     }
     Square {//1
+        id: b2
         image: "square5.png"
         bx: 1
         by: 0
