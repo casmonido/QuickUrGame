@@ -5,7 +5,10 @@ Square {
     color:"transparent"
     width: 7*parent.unit
     anchors.horizontalCenter: parent.horizontalCenter
-    Piece {
-        color: "black"
+    Repeater {
+        model: 7
+        Piece {
+            color: "black"
+        }
     }
 }

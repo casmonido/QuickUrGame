@@ -1,10 +1,10 @@
 import QtQuick 2.0
 
-
 Rectangle {
     function move() {
         state = "movingParent"
         crossedPathLength++
+        mainWindow.playersTurn = false
     }
     property int crossedPathLength: 0
     radius: parent.height/2
@@ -24,6 +24,10 @@ Rectangle {
                 x: parent.width/4
                 y: parent.height/4
             }
+            PropertyChanges {
+                target: clickable
+                enabled: false
+            }
         },
         State {
             name: "parentChanged"
@@ -31,12 +35,10 @@ Rectangle {
             ParentChange {
                 target: piece
                 parent: piece.parent
-                x: parent.width/4
-                y: parent.height/4
             }
             PropertyChanges {
-                target: piece
-                color: "blue"
+                target: clickable
+                enabled: true
             }
         }
     ]
@@ -45,27 +47,16 @@ Rectangle {
         to: "movingParent"
         id: xyAnimation
         ParentAnimation {
-            NumberAnimation {  properties: "x,y"; duration: 1000 }
+            SmoothedAnimation {  properties: "x,y"; velocity: 200 }
         }
     }
 
     MouseArea {
+        id: clickable
         anchors.fill: parent;
         acceptedButtons: Qt.LeftButton
         onClicked: {
             piece.move()
-            //state = "disabled"
         }
-
-        states: [
-            State {
-                name: "enabled"
-                PropertyChanges {target: parent; enabled:true}
-            },
-            State {
-                name: "disabled"
-                PropertyChanges {target: parent; enabled:false}
-            }
-        ]
     }
 }
