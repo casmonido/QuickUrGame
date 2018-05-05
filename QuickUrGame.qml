@@ -7,7 +7,6 @@ Window {
     width: 1200
     height: 600
     title: qsTr("The royal game of Ur")
-
     Board {
         anchors.centerIn: parent
     }
