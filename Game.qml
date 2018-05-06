@@ -25,8 +25,8 @@ Item {
         id: dice
         anchors.left: board.right
         anchors.verticalCenter: parent.verticalCenter
-        anchors.leftMargin: board.unit/2
-        width: 5*board.unit
-        height: 4*board.unit
+        anchors.leftMargin: board.unit
+        width: 4*board.unit
+        height: 2*board.unit
     }
 }

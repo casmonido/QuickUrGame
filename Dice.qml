@@ -4,11 +4,21 @@ Rectangle {
     visible: true
     id: dice
     color: "pink"
-    property int rolledNum: 1
+    property int rolledNum: 0
     function roll() {
         rolledNum = 0
-            dieRepeater.childAt(0)
+        for (var i=0; i<4; ++i)
+            rolledNum += dieRepeater.itemAt(i).roll()
         state = "rolled";
+    }
+    Row {
+        spacing: board.unit/4
+        Repeater {
+            id: dieRepeater
+            model: 4
+            Die {
+            }
+        }
     }
     Text {
         id: text
@@ -34,15 +44,6 @@ Rectangle {
         onClicked: {
             if (dice.state != "rolled")
                 dice.roll()
-        }
-    }
-    Row {
-        Repeater {
-            id: dieRepeater
-            model: 5
-            Die {
-                //anchors.centerIn: parent
-            }
         }
     }
 }

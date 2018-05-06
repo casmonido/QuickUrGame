@@ -4,8 +4,8 @@ Item {
     property string imageUp: "diceup.gif"
     property string imageDown: "dicedown.gif"
     property int rolledNum: 0
-    width: board.unit
-    height: 110*board.unit/125
+    width: 3*board.unit/4
+    height: 110*width/125
     function roll()
     {
         rolledNum = Math.floor(Math.random() * 2);
