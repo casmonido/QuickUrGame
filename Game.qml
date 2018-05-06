@@ -6,6 +6,7 @@ Item {
     property bool pieceMoving : false
     visible: true
     onPlayersTurnChanged: {
+        dice.state = "notRolled";
         if (!playersTurn)
             computerPlayer.move();
     }

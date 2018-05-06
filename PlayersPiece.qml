@@ -64,7 +64,8 @@ Piece {
         anchors.fill: parent;
         acceptedButtons: Qt.LeftButton
         onClicked: {
-            if (!game.pieceMoving && playersPiece.state != "opponentsTurn")
+            if (!game.pieceMoving && playersPiece.state != "opponentsTurn"
+                    && dice.state == "rolled")
             {
                 //console.log("X "+playersPiece.state)
                 playersPiece.move(dice.rolledNum)

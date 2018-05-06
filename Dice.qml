@@ -6,7 +6,8 @@ Rectangle {
     color: "pink"
     property int rolledNum: 1
     function roll() {
-        //rolledNum = Math.floor(Math.random() * 4);
+        rolledNum = 0
+            dieRepeater.childAt(0)
         state = "rolled";
     }
     Text {
@@ -31,7 +32,17 @@ Rectangle {
         anchors.fill: parent;
         acceptedButtons: Qt.LeftButton
         onClicked: {
-            dice.roll()
+            if (dice.state != "rolled")
+                dice.roll()
+        }
+    }
+    Row {
+        Repeater {
+            id: dieRepeater
+            model: 5
+            Die {
+                //anchors.centerIn: parent
+            }
         }
     }
 }
