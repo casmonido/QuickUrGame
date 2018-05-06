@@ -5,6 +5,19 @@ Piece {
     id: piece
     states: [
         State {
+            name: "opponentsTurn"
+            extend: "myTurn"
+            when: (!xyAnimationC.running && game.playersTurn)
+        },
+        State {
+            name: "myTurn"
+            when: (!xyAnimationC.running && !game.playersTurn)
+            ParentChange {
+                target: piece
+                parent: piece.parent
+            }
+        },
+        State {
             name: "movingParent"
             ParentChange {
                 target: piece
@@ -12,21 +25,15 @@ Piece {
                 x: parent.width/4
                 y: parent.height/4
             }
-        },
-        State {
-            name: "parentChanged"
-            when: !xyAnimationC.running
-            ParentChange {
-                target: piece
-                parent: piece.parent
-            }
         }
     ]
     Connections {
         target: xyAnimationC
         onRunningChanged: {
             if(!xyAnimationC.running)
+            {
                 game.playersTurn = true
+            }
         }
     }
     transitions: Transition {

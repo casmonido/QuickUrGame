@@ -1,14 +1,26 @@
 import QtQuick 2.0
 
 Piece {
-    id: piece
+    id: playersPiece
     color: "white"
     states: [
         State {
+            name: "myTurn"
+            when: game.playersTurn && !xyAnimationP.running
+            ParentChange {
+                target: playersPiece
+                parent: playersPiece.parent
+            }
+            PropertyChanges {
+                target: clickable
+                enabled: true
+            }
+        },
+        State {
             name: "movingParent"
             ParentChange {
-                target: piece
-                parent: board.destinationSquare(piece.crossedPathLength)
+                target: playersPiece
+                parent: board.destinationSquare(playersPiece.crossedPathLength)
                 x: parent.width/4
                 y: parent.height/4
             }
@@ -18,15 +30,12 @@ Piece {
             }
         },
         State {
-            name: "parentChanged"
-            when: !xyAnimationP.running
-            ParentChange {
-                target: piece
-                parent: piece.parent
-            }
+            name: "opponentsTurn"
+            extend: "myTurn"
+            when: !xyAnimationP.running && !game.playersTurn
             PropertyChanges {
-                target: clickable //not really?
-                enabled: true
+                target: clickable
+                enabled: false
             }
         }
     ]
@@ -55,8 +64,11 @@ Piece {
         anchors.fill: parent;
         acceptedButtons: Qt.LeftButton
         onClicked: {
-            if (!game.pieceMoving)
-                piece.move(dice.rolledNum)
+            if (!game.pieceMoving && playersPiece.state != "opponentsTurn")
+            {
+                //console.log("X "+playersPiece.state)
+                playersPiece.move(dice.rolledNum)
+            }
         }
     }
 }
