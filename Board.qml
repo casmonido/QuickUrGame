@@ -1,6 +1,7 @@
 import QtQuick 2.0
 
 Rectangle {
+    property var computerPieces: computerPiecesR
     function destinationSquare(crossedPathLength, pathToCross) {
         if (crossedPathLength+pathToCross < whiteRects.length)
             return whiteRects[crossedPathLength+pathToCross];
@@ -21,10 +22,21 @@ Rectangle {
     StartingSquare {
         id: sw
         anchors.top: parent.top
+        Repeater {
+            model: 7
+            PlayersPiece {
+            }
+        }
     }
     StartingSquare {
         id: sb
         anchors.bottom: parent.bottom
+        Repeater {
+            id: computerPiecesR
+            model: 7
+            ComputersPiece {
+            }
+        }
     }
     Square {//0
         id: s0
