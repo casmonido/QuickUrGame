@@ -2,9 +2,9 @@ import QtQuick 2.0
 
 Rectangle {
     property var computerPieces: computerPiecesR
-    function destinationSquare(crossedPathLength, pathToCross) {
-        if (crossedPathLength+pathToCross < whiteRects.length)
-            return whiteRects[crossedPathLength+pathToCross];
+    function destinationSquare(crossedPathLength) {
+        if (crossedPathLength < whiteRects.length)
+            return whiteRects[crossedPathLength];
         return null;
     }
     property list<Rectangle> whiteRects //var whiteRects: []

@@ -4,9 +4,9 @@ Rectangle {
     visible: true
     id: dice
     color: "pink"
-    property int rolledNum: 0
+    property int rolledNum: 1
     function roll() {
-        rolledNum = Math.floor(Math.random() * 4);
+        //rolledNum = Math.floor(Math.random() * 4);
         state = "rolled";
     }
     Text {

@@ -12,7 +12,7 @@ Rectangle {
     visible: true
     state: "parentChanged"
     function move(rolledNum) {
+        crossedPathLength += rolledNum
         state = "movingParent"
-        crossedPathLength++
     }
 }

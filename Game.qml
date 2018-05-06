@@ -3,7 +3,13 @@ import QtQuick 2.0
 Item {
     id: game
     property bool playersTurn: true
+    property bool pieceMoving : false
     visible: true
+    onPlayersTurnChanged: {
+        if (!playersTurn)
+            computerPlayer.move();
+    }
+
     ComputerPlayer {
         id: computerPlayer
         computerPieces: board.computerPieces
@@ -22,24 +28,4 @@ Item {
         width: 5*board.unit
         height: 4*board.unit
     }
-    states: [
-        State {
-            name: "playersTurn"
-            PropertyChanges {
-                target: game
-                playersTurn: true
-            }
-        },
-        State {
-            name: "computersTurn"
-            PropertyChanges {
-                target: game
-                playersTurn: false
-            }
-            StateChangeScript {
-                name: "secondScript"
-                script: computerPlayer.move()
-            }
-        }
-    ]
 }

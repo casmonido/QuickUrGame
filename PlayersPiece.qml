@@ -8,7 +8,7 @@ Piece {
             name: "movingParent"
             ParentChange {
                 target: piece
-                parent: piece.parent.parent.destinationSquare(piece.crossedPathLength, 1)
+                parent: board.destinationSquare(piece.crossedPathLength)
                 x: parent.width/4
                 y: parent.height/4
             }
@@ -33,8 +33,13 @@ Piece {
     Connections {
         target: xyAnimationP
         onRunningChanged: {
+            if(xyAnimationP.running)
+                game.pieceMoving = true
             if(!xyAnimationP.running)
-                game.state = "computersTurn"
+            {
+                game.playersTurn = false
+                game.pieceMoving = false
+            }
         }
     }
     transitions: Transition {
@@ -50,7 +55,8 @@ Piece {
         anchors.fill: parent;
         acceptedButtons: Qt.LeftButton
         onClicked: {
-            piece.move()
+            if (!game.pieceMoving)
+                piece.move(dice.rolledNum)
         }
     }
 }

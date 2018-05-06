@@ -8,7 +8,7 @@ Piece {
             name: "movingParent"
             ParentChange {
                 target: piece
-                parent: piece.parent.parent.destinationSquare(piece.crossedPathLength, 1)
+                parent: board.destinationSquare(piece.crossedPathLength)
                 x: parent.width/4
                 y: parent.height/4
             }
@@ -26,7 +26,7 @@ Piece {
         target: xyAnimationC
         onRunningChanged: {
             if(!xyAnimationC.running)
-                game.state = "playersTurn"
+                game.playersTurn = true
         }
     }
     transitions: Transition {
