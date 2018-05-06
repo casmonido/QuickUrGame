@@ -29,10 +29,6 @@ Item {
                 target: game
                 playersTurn: true
             }
-            StateChangeScript {
-                name: "firstScript"
-                script: console.log("entering first state")
-            }
         },
         State {
             name: "computersTurn"

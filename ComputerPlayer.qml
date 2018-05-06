@@ -5,6 +5,10 @@ QtObject {
     function move()
     {
         dice.roll()
-        computerPieces.itemAt(0).move()
+        var rand = 0;
+        do {
+            rand = Math.floor(Math.random() * 6);
+        } while (computerPieces.itemAt(rand).wholePathCrossed);
+        computerPieces.itemAt(rand).move(dice.rolledNum)
     }
 }

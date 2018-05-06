@@ -34,10 +34,7 @@ Piece {
         target: xyAnimationP
         onRunningChanged: {
             if(!xyAnimationP.running)
-            {
                 game.state = "computersTurn"
-            }
-            //console.log("evil laugh")
         }
     }
     transitions: Transition {
