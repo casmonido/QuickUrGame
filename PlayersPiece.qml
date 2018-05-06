@@ -20,7 +20,7 @@ Piece {
             name: "movingParent"
             ParentChange {
                 target: playersPiece
-                parent: board.destinationSquare(playersPiece.crossedPathLength)
+                parent: board.destinationSquare("human", playersPiece.crossedPathLength)
                 x: parent.width/4
                 y: parent.height/4
             }
@@ -36,6 +36,23 @@ Piece {
             PropertyChanges {
                 target: clickable
                 enabled: false
+            }
+        },
+        State {
+            name: "wholePathCrossed"
+            ParentChange {
+                target: playersPiece
+                parent: playersPiece.parent
+                x: parent.width/4
+                y: parent.height/4
+            }
+            PropertyChanges {
+                target: clickable
+                enabled: false
+            }
+            PropertyChanges {
+                target: playersPiece
+                visible: false // potrzebuję animacji?
             }
         }
     ]

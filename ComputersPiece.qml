@@ -21,7 +21,7 @@ Piece {
             name: "movingParent"
             ParentChange {
                 target: piece
-                parent: board.destinationSquare(piece.crossedPathLength)
+                parent: board.destinationSquare("computer", piece.crossedPathLength)
                 x: parent.width/4
                 y: parent.height/4
             }

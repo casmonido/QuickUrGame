@@ -2,10 +2,15 @@ import QtQuick 2.0
 
 Rectangle {
     property var computerPieces: computerPiecesR
-    function destinationSquare(crossedPathLength) {
-        if (crossedPathLength < whiteRects.length)
+    function destinationSquare(opponent, crossedPathLength) {
+        if (crossedPathLength >= whiteRects.length)
+        {
+            // wholePathCrossed??
+            return null;
+        }
+        if (opponent === "human")
             return whiteRects[crossedPathLength];
-        return null;
+        return blackRects[crossedPathLength];
     }
     property list<Rectangle> whiteRects //var whiteRects: []
     property list<Rectangle> blackRects
