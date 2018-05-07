@@ -2,6 +2,7 @@ import QtQuick 2.0
 
 Piece {
     color: "black"
+    property string typeName: "ComputersPiece"
     id: piece
     states: [
         State {
@@ -40,8 +41,13 @@ Piece {
         from: "*"
         to: "movingParent"
         id: xyAnimationC
-        ParentAnimation {
-            SmoothedAnimation {  properties: "x,y"; velocity: 200 }
+        SequentialAnimation {
+            ParentAnimation {
+                SmoothedAnimation {  properties: "x,y"; velocity: 200 }
+            }
+            ScriptAction {
+                script: piece.parent.tryAndOccupy(piece)
+            }
         }
     }
 }

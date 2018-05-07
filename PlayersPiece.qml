@@ -3,6 +3,7 @@ import QtQuick 2.0
 Piece {
     id: playersPiece
     color: "white"
+    property string typeName: "PlayersPiece"
     states: [
         State {
             name: "myTurn"
@@ -72,10 +73,16 @@ Piece {
         from: "*"
         to: "movingParent"
         id: xyAnimationP
-        ParentAnimation {
-            SmoothedAnimation {  properties: "x,y"; velocity: 200 }
+        SequentialAnimation {
+            ParentAnimation {
+                SmoothedAnimation {  properties: "x,y"; velocity: 200 }
+            }
+            ScriptAction {
+                script: playersPiece.parent.tryAndOccupy(playersPiece)
+            }
         }
     }
+
     MouseArea {
         id: clickable
         anchors.fill: parent;
@@ -89,4 +96,5 @@ Piece {
             }
         }
     }
+
 }

@@ -12,7 +12,7 @@ Rectangle {
             return whiteRects[crossedPathLength];
         return blackRects[crossedPathLength];
     }
-    property list<Rectangle> whiteRects //var whiteRects: []
+    property list<Rectangle> whiteRects
     property list<Rectangle> blackRects
     whiteRects: [sw, s3, s2, s1, s0, s6, s7, s8, s9, s10, s11, s12, s13, s5, s4]
     blackRects: [sb, s17, s16, s15, s14, s6, s7, s8, s9, s10, s11, s12, s13, s13, s19, s18]

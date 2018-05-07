@@ -10,7 +10,17 @@ Rectangle {
     y: parent.height/4
     visible: true
     function move(rolledNum) {
+        parent.commandLeave.disconnect(goBackToBeginning)
         crossedPathLength += rolledNum
         state = "movingParent"
+    }
+    function goBackToBeginning(type)
+    {
+        //console.log(type + " " + typeName)
+        if (typeName !== type)
+            return;
+        crossedPathLength = 0;
+        parent.commandLeave.disconnect(goBackToBeginning)
+        state = "movingParent" //osobny
     }
 }
