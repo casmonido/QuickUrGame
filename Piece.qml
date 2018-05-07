@@ -2,7 +2,7 @@ import QtQuick 2.0
 
 Rectangle {
     property int crossedPathLength: 0
-    radius: parent.height/2
+    radius: board.unit/2
     width:radius
     height: radius
     x: parent.width/4

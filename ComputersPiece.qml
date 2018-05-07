@@ -67,16 +67,16 @@ Piece {
             to: "wholePathCrossed"
             ParallelAnimation {
                 PropertyAnimation {
-                    target: piece
                     properties: "radius"
+                    from: board.unit/2
                     to: 0
-                    duration: 1000
+                    duration: 2000
                 }
                 PropertyAnimation {
-                    target: piece
                     properties: "opacity"
-                    to: 0
-                    duration: 1000
+                    from: 1.0
+                    to: 0.0
+                    duration: 2000
                 }
             }
         }

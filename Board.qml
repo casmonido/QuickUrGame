@@ -6,8 +6,7 @@ Rectangle {
         if (p.crossedPathLength >= whiteRects.length)
         {
             p.state = "wholePathCrossed"
-            //return null;
-            return p.parent
+            return endSquare;
         }
         if (p.typeName === "PlayersPiece")
             return whiteRects[p.crossedPathLength];
@@ -163,5 +162,8 @@ Rectangle {
         image: "square2.png"
         bx: 7
         by: 2
+    }
+    EndSquare {
+        id: endSquare
     }
 }

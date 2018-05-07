@@ -44,15 +44,12 @@ Piece {
             ParentChange {
                 target: playersPiece
                 parent: playersPiece.parent
+
             }
             PropertyChanges {
                 target: clickable
                 enabled: false
             }
-//            PropertyChanges {
-//                target: playersPiece
-//                visible: false // potrzebuję animacji?
-//            }
         }
     ]
     Connections {
@@ -87,13 +84,15 @@ Piece {
             ParallelAnimation {
                 PropertyAnimation {
                     properties: "radius"
+                    from: board.unit/2
                     to: 0
-                    duration: 1000
+                    duration: 2000
                 }
                 PropertyAnimation {
                     properties: "opacity"
-                    to: 0
-                    duration: 1000
+                    from: 1.0
+                    to: 0.0
+                    duration: 2000
                 }
             }
         }
