@@ -8,11 +8,11 @@ Piece {
         State {
             name: "opponentsTurn"
             extend: "myTurn"
-            when: (!xyAnimationC.running && game.playersTurn)
+            when: (!xyAnimationC.running && game.playersTurn && !wholePathCrossed)
         },
         State {
             name: "myTurn"
-            when: (!xyAnimationC.running && !game.playersTurn)
+            when: (!xyAnimationC.running && !game.playersTurn && !wholePathCrossed)
             ParentChange {
                 target: piece
                 parent: piece.parent
@@ -28,15 +28,12 @@ Piece {
             }
         },
         State {
+            when: wholePathCrossed
             name: "wholePathCrossed"
             ParentChange {
                 target: piece
                 parent: piece.parent
             }
-//            PropertyChanges {
-//                target: piece
-//                visible: false // potrzebuję animacji?
-//            }
         }
     ]
     Connections {

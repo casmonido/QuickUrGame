@@ -5,7 +5,7 @@ Rectangle {
     function destinationSquare(p) {
         if (p.crossedPathLength >= whiteRects.length)
         {
-            p.state = "wholePathCrossed"
+            p.wholePathCrossed = true
             return endSquare;
         }
         if (p.typeName === "PlayersPiece")

@@ -2,6 +2,7 @@ import QtQuick 2.0
 
 Rectangle {
     property int crossedPathLength: 0
+    property bool wholePathCrossed: false
     radius: board.unit/2
     width:radius
     height: radius

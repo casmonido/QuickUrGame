@@ -7,7 +7,7 @@ Piece {
     states: [
         State {
             name: "myTurn"
-            when: game.playersTurn && !xyAnimationP.running
+            when: (game.playersTurn && !xyAnimationP.running && !wholePathCrossed)
             ParentChange {
                 target: playersPiece
                 parent: playersPiece.parent
@@ -33,7 +33,7 @@ Piece {
         State {
             name: "opponentsTurn"
             extend: "myTurn"
-            when: !xyAnimationP.running && !game.playersTurn
+            when: (!xyAnimationP.running && !game.playersTurn && !wholePathCrossed)
             PropertyChanges {
                 target: clickable
                 enabled: false
@@ -41,6 +41,7 @@ Piece {
         },
         State {
             name: "wholePathCrossed"
+            when: wholePathCrossed
             ParentChange {
                 target: playersPiece
                 parent: playersPiece.parent
