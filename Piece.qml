@@ -23,6 +23,6 @@ Rectangle {
             return;
         crossedPathLength = 0;
         parent.commandLeave.disconnect(goBackToBeginning)
-        state = "movingParent" //osobny
+        state = "resettingParent"
     }
 }

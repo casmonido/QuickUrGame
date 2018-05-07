@@ -7,7 +7,8 @@ Piece {
     states: [
         State {
             name: "myTurn"
-            when: (game.playersTurn && !xyAnimationP.running && !wholePathCrossed)
+            when: (game.playersTurn && !xyAnimationP.running
+                   && !wholePathCrossed && !resettingAnimation.running)
             ParentChange {
                 target: piece
                 parent: piece.parent
@@ -32,9 +33,14 @@ Piece {
             }
         },
         State {
+            name: "resettingParent"
+            extend: "movingParent"
+        },
+        State {
             name: "opponentsTurn"
             extend: "myTurn"
-            when: (!xyAnimationP.running && !game.playersTurn && !wholePathCrossed)
+            when: (!xyAnimationP.running && !game.playersTurn
+                   && !wholePathCrossed && !resettingAnimation.running)
             PropertyChanges {
                 target: clickable
                 enabled: false
@@ -81,6 +87,16 @@ Piece {
         },
         Transition {
             from: "*"
+            to: "resettingParent"
+            id: resettingAnimation
+            SequentialAnimation {
+                ParentAnimation {
+                    SmoothedAnimation {  properties: "x,y"; velocity: 200 }
+                }
+            }
+        },
+        Transition {
+            from: "*"
             to: "wholePathCrossed"
             ParallelAnimation {
                 PropertyAnimation {
@@ -98,7 +114,6 @@ Piece {
             }
         }
     ]
-
     MouseArea {
         id: clickable
         anchors.fill: parent;
@@ -112,5 +127,4 @@ Piece {
             }
         }
     }
-
 }

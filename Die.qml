@@ -4,7 +4,7 @@ Item {
     property string imageUp: "diceup.gif"
     property string imageDown: "dicedown.gif"
     property int rolledNum: 0
-    width: 3*board.unit/4
+    width: board.unit
     height: 110*width/125
     function roll()
     {
@@ -30,8 +30,10 @@ Item {
         }
     ]
     Image {
+        width: 3*parent.width/4
+        height: 3*parent.height/4
         id: image
-        anchors.fill: parent
+        anchors.centerIn: parent
         visible: true
     }
     state: "rolled0"

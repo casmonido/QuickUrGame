@@ -12,7 +12,6 @@ Rectangle {
         state = "rolled";
     }
     Row {
-        spacing: board.unit/4
         Repeater {
             id: dieRepeater
             model: 4
@@ -22,7 +21,11 @@ Rectangle {
     }
     Text {
         id: text
-        anchors.centerIn: parent
+        anchors.horizontalCenter: parent.horizontalCenter
+        //anchors.verticalCenter: parent.verticalCenter
+
+        font.pointSize : board.unit/4
+        //bottomPadding: 3*board.unit/2
         text: "Roll"
     }
     states: [
@@ -33,7 +36,7 @@ Rectangle {
         },
         State {
             name: "rolled"
-            PropertyChanges { target: text; text: "Rolled number:" + rolledNum }
+            PropertyChanges { target: text; text: "Rolled number: " + rolledNum }
             PropertyChanges { target: clickable; enabled:false }
         }
     ]

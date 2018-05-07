@@ -8,11 +8,13 @@ Piece {
         State {
             name: "opponentsTurn"
             extend: "myTurn"
-            when: (!xyAnimationC.running && game.playersTurn && !wholePathCrossed)
+            when: (!xyAnimationC.running && game.playersTurn
+                   && !wholePathCrossed && !resettingAnimation.running)
         },
         State {
             name: "myTurn"
-            when: (!xyAnimationC.running && !game.playersTurn && !wholePathCrossed)
+            when: (!xyAnimationC.running && !game.playersTurn
+                   && !wholePathCrossed && !resettingAnimation.running)
             ParentChange {
                 target: piece
                 parent: piece.parent
@@ -26,6 +28,10 @@ Piece {
                 x: parent.width/4
                 y: parent.height/4
             }
+        },
+        State {
+            name: "resettingParent"
+            extend: "movingParent"
         },
         State {
             when: wholePathCrossed
@@ -46,7 +52,7 @@ Piece {
         }
     }
     transitions: [
-            Transition {
+        Transition {
             from: "*"
             to: "movingParent"
             id: xyAnimationC
@@ -57,6 +63,14 @@ Piece {
                 ScriptAction {
                     script: piece.parent.tryAndOccupy(piece)
                 }
+            }
+        },
+        Transition {
+            from: "*"
+            to: "resettingParent"
+            id: resettingAnimation
+            ParentAnimation {
+                SmoothedAnimation {  properties: "x,y"; velocity: 200 }
             }
         },
         Transition {
