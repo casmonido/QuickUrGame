@@ -6,6 +6,10 @@ Rectangle {
         if (p.crossedPathLength >= whiteRects.length)
         {
             p.wholePathCrossed = true
+            if (p.typeName === "PlayersPiece")
+                game.playersScore++
+            else
+                game.opponentsScore++
             return endSquare;
         }
         if (p.typeName === "PlayersPiece")
