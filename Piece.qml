@@ -6,9 +6,11 @@ Rectangle {
     radius: board.unit/2
     width:radius
     height: radius
-    x: parent.width/4
-    y: parent.height/4
+    border.color: "grey"
+    border.width: 1
     visible: true
+    x: parent.getX(piece)
+    y: parent.getY(piece)
     function move(rolledNum) {
         parent.commandLeave.disconnect(goBackToBeginning)
         crossedPathLength += rolledNum

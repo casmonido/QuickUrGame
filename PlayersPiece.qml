@@ -1,7 +1,7 @@
 import QtQuick 2.0
 
 Piece {
-    id: playersPiece
+    id: piece
     color: "white"
     property string typeName: "PlayersPiece"
     states: [
@@ -9,8 +9,9 @@ Piece {
             name: "myTurn"
             when: (game.playersTurn && !xyAnimationP.running && !wholePathCrossed)
             ParentChange {
-                target: playersPiece
-                parent: playersPiece.parent
+                target: piece
+                parent: piece.parent
+
             }
             PropertyChanges {
                 target: clickable
@@ -20,10 +21,10 @@ Piece {
         State {
             name: "movingParent"
             ParentChange {
-                target: playersPiece
-                parent: board.destinationSquare(playersPiece)
-                x: parent.width/4
-                y: parent.height/4
+                target: piece
+                parent: board.destinationSquare(piece)
+                x: parent.getX(piece)
+                y: parent.getY(piece)
             }
             PropertyChanges {
                 target: clickable
@@ -43,9 +44,8 @@ Piece {
             name: "wholePathCrossed"
             when: wholePathCrossed
             ParentChange {
-                target: playersPiece
-                parent: playersPiece.parent
-
+                target: piece
+                parent: piece.parent
             }
             PropertyChanges {
                 target: clickable
@@ -75,7 +75,7 @@ Piece {
                     SmoothedAnimation {  properties: "x,y"; velocity: 200 }
                 }
                 ScriptAction {
-                    script: playersPiece.parent.tryAndOccupy(playersPiece)
+                    script: piece.parent.tryAndOccupy(piece)
                 }
             }
         },
@@ -104,11 +104,11 @@ Piece {
         anchors.fill: parent;
         acceptedButtons: Qt.LeftButton
         onClicked: {
-            if (!game.pieceMoving && playersPiece.state != "opponentsTurn"
+            if (!game.pieceMoving && piece.state != "opponentsTurn"
                     && dice.state == "rolled")
             {
-                //console.log("X "+playersPiece.state)
-                playersPiece.move(dice.rolledNum)
+                //console.log("X "+piece.state)
+                piece.move(dice.rolledNum)
             }
         }
     }
