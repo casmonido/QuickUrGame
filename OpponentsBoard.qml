@@ -7,12 +7,14 @@ Rectangle {
     anchors.leftMargin: board.unit
     width: 4*board.unit
     height: board.unit
-    color: "red"
+    color: "#a5140d"
     opacity: 1.0
     Text {
         text: "OPPONENTS TURN"
         anchors.centerIn: parent
         color: "white"
+        font.pixelSize: board.unit/3
+        font.letterSpacing: board.unit/40
     }
     states: [
         State {

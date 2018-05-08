@@ -33,7 +33,7 @@ Rectangle {
     visible: true
     width: columns*unit+(columns+1)*margin
     height: (rows+2)*unit+(rows+1)*margin
-    color: "#19468e"
+    color: "#033d63"
     StartingSquare {
         id: sw
         anchors.top: parent.top

@@ -8,6 +8,18 @@ Item {
     visible: true
     property int playersScore: 0
     property int opponentsScore: 0
+    Text {
+        text: parent.endText
+        visible: true
+        anchors.centerIn: parent
+        font.pixelSize: 0
+        PropertyAnimation {
+            id: showWhoWon
+            properties: "font.pixelSize"
+            from: 0
+            to: board.unit*10
+        }
+    }
     function nextTurn()
     {
         if (playersTurn)
@@ -22,12 +34,12 @@ Item {
             state = "gameEnd"
             return;
         }
-        if (opponentsScore == 7)
-        {
+        //if (opponentsScore == 7)
+        //{
             endText = "You lost!"
             state = "gameEnd"
             return;
-        }
+        //}
         dice.state = "notRolled";
         if (!playersTurn)
             computerPlayer.move();
@@ -51,10 +63,18 @@ Item {
         height: 2*board.unit
     }
     PlayersBoard {
+        id: rectPlayers
     }
     OpponentsBoard {
     }
     states: State {
         name: "gameEnd"
+        StateChangeScript {
+            script: showWhoWon.start()
+        }
+    } 
+    function tellWhatToDo()
+    {
+        rectPlayers.tellWhatToDo()
     }
 }

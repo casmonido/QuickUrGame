@@ -3,7 +3,7 @@ import QtQuick 2.0
 Rectangle {
     visible: true
     id: dice
-    color: "pink"
+    color: "#033d63"
     property int rolledNum: 0
     function roll() {
         rolledNum = 0
@@ -28,6 +28,7 @@ Rectangle {
     }
     Text {
         id: text
+        color:"white"
         anchors.horizontalCenter: parent.horizontalCenter
         y: 5*board.unit/4
         font.letterSpacing: board.unit/40
@@ -46,6 +47,11 @@ Rectangle {
             PropertyChanges { target: clickable; enabled:false; hoverEnabled : false }
         }
     ]
+    onStateChanged: {
+        if (state === "rolled" && game.playersTurn && rolledNum > 0)
+            game.tellWhatToDo()
+    }
+
     MouseArea {
         id: clickable
         anchors.fill: parent;

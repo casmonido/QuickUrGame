@@ -4,7 +4,7 @@ Item {
     property var computerPieces
     Timer {
         id:afterRollTimer
-        interval: 1000; repeat: false
+        interval: 1500; repeat: false
         onTriggered: computerPlayer.movePiece()
     }
     function move()

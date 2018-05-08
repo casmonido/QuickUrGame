@@ -5,6 +5,7 @@ Window {
     id: mainWindow
     visible: true
     width: 600
+    color: "white"
     height: 300
     title: qsTr("The royal game of Ur")
     Game {
