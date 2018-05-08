@@ -4,6 +4,7 @@ Item {
     property string imageUp: "diceup.gif"
     property string imageDown: "dicedown.gif"
     property int rolledNum: 0
+    property bool rolling: false
     width: board.unit
     height: 110*width/125
     function roll()
@@ -29,6 +30,15 @@ Item {
             }
         }
     ]
+    NumberAnimation on rotation {
+        duration: (Math.random()*3000+1000)
+        easing.type: Easing.Linear
+        from: 0
+        to: 360
+        running: clickable.containsMouse && !clickable.pressed
+        loops: Animation.Infinite
+    }
+
     Image {
         width: 3*parent.width/4
         height: 3*parent.height/4

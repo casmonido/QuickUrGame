@@ -55,10 +55,18 @@ Rectangle {
     MouseArea {
         id: clickable
         anchors.fill: parent;
+        hoverEnabled : true
         acceptedButtons: Qt.LeftButton
-        onClicked: {
+        onPressed: {
+            cursorShape = Qt.ClosedHandCursor
+        }
+        onReleased: {
+            cursorShape = Qt.ArrowCursor
             if (dice.state != "rolled")
                 dice.roll()
+        }
+        onEntered: {
+            cursorShape = Qt.OpenHandCursor
         }
     }
 }

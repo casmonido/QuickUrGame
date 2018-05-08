@@ -1,12 +1,20 @@
 import QtQuick 2.0
 
-QtObject {
+Item {
     property var computerPieces
+    Timer {
+        id:afterRollTimer
+        interval: 1000; repeat: false
+        onTriggered: computerPlayer.movePiece()
+    }
     function move()
     {
         dice.roll()
         if (dice.state !== "rolled")
-            return
+            return;
+        afterRollTimer.start()
+    }
+    function movePiece() {
         var rand = 0;
         do {
             rand = Math.floor(Math.random() * 6);
