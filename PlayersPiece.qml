@@ -16,6 +16,7 @@ Piece {
             PropertyChanges {
                 target: clickable
                 enabled: true
+                hoverEnabled: true
             }
         },
         State {
@@ -29,6 +30,7 @@ Piece {
             PropertyChanges {
                 target: clickable
                 enabled: false
+                hoverEnabled: false
             }
         },
         State {
@@ -117,14 +119,23 @@ Piece {
     MouseArea {
         id: clickable
         anchors.fill: parent;
+        hoverEnabled : true
+        enabled: true
         acceptedButtons: Qt.LeftButton
-        onClicked: {
+        onReleased: {
+            cursorShape = Qt.ArrowCursor
             if (!game.pieceMoving && piece.state != "opponentsTurn"
                     && dice.state == "rolled")
             {
                 //console.log("X "+piece.state)
                 piece.move(dice.rolledNum)
             }
+        }
+        onPressed: {
+            cursorShape = Qt.ClosedHandCursor
+        }
+        onEntered: {
+            cursorShape = Qt.OpenHandCursor
         }
     }
 }

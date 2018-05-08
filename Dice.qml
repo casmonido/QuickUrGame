@@ -39,23 +39,24 @@ Rectangle {
         State {
             name: "notRolled"
             PropertyChanges { target: text; text: "Roll" }
-            PropertyChanges { target: clickable; enabled:true }
+            PropertyChanges { target: clickable; enabled:true; hoverEnabled : true }
         },
         State {
             name: "rolledZero"
             PropertyChanges { target: text; text: "Rolled number: 0" }
-            PropertyChanges { target: clickable; enabled:false }
+            PropertyChanges { target: clickable; enabled:false; hoverEnabled : false }
         },
         State {
             name: "rolled"
             PropertyChanges { target: text; text: "Rolled number: " + rolledNum }
-            PropertyChanges { target: clickable; enabled:false }
+            PropertyChanges { target: clickable; enabled:false; hoverEnabled : false }
         }
     ]
     MouseArea {
         id: clickable
         anchors.fill: parent;
         hoverEnabled : true
+        enabled: true
         acceptedButtons: Qt.LeftButton
         onPressed: {
             cursorShape = Qt.ClosedHandCursor
