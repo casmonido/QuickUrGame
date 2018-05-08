@@ -4,7 +4,6 @@ Rectangle {
     property string image
     property int bx
     property int by
-    z: children.length
     signal commandLeave(string type)
     function tryAndOccupy(p) {
         if (p.typeName === "PlayersPiece")

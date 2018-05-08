@@ -5,8 +5,8 @@ Rectangle {
     property bool wholePathCrossed: false
     radius: board.unit/2
     width:radius
-    z: 100
     height: radius
+    z: 100
     border.color: "grey"
     border.width: 1
     visible: true

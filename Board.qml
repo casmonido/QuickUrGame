@@ -3,10 +3,23 @@ import QtQuick 2.0
 Rectangle {
     property var computerPieces: computerPiecesR
     function destinationSquare(p) {
+        var i = 0
+        for (i = 0; i<whiteRects.length; ++i)
+        {
+            whiteRects[i].z = 0;
+            blackRects[i].z = 0;
+        }
         if (p.crossedPathLength >= whiteRects.length)
+        {
+            endSquare.z = 10
             return endSquare;
+        }
         if (p.typeName === "PlayersPiece")
+        {
+            whiteRects[p.crossedPathLength].z = 10
             return whiteRects[p.crossedPathLength];
+        }
+        blackRects[p.crossedPathLength].z = 10
         return blackRects[p.crossedPathLength];
     }
     property list<Rectangle> whiteRects
