@@ -8,6 +8,13 @@ Item {
     visible: true
     property int playersScore: 0
     property int opponentsScore: 0
+    function nextTurn()
+    {
+        if (playersTurn)
+            playersTurn = false
+        else
+            playersTurn = true
+    }
     onPlayersTurnChanged: {
         if (playersScore == 7)
         {
@@ -42,6 +49,10 @@ Item {
         anchors.leftMargin: board.unit
         width: 4*board.unit
         height: 2*board.unit
+    }
+    PlayersBoard {
+    }
+    OpponentsBoard {
     }
     states: State {
         name: "gameEnd"

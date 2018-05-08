@@ -5,6 +5,8 @@ QtObject {
     function move()
     {
         dice.roll()
+        if (dice.state !== "rolled")
+            return
         var rand = 0;
         do {
             rand = Math.floor(Math.random() * 6);

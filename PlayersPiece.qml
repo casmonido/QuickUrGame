@@ -58,7 +58,7 @@ Piece {
                 game.pieceMoving = true
             if(!xyAnimationP.running)
             {
-                game.playersTurn = false
+                game.nextTurn()
                 game.pieceMoving = false
             }
         }
@@ -68,7 +68,7 @@ Piece {
         onRunningChanged: {
             if(!endAnimation.running)
             {
-                game.playersTurn = false
+                game.nextTurn()
             }
         }
     }
@@ -102,7 +102,7 @@ Piece {
             ParallelAnimation {
                 id: endAnimation
                 ParentAnimation {
-                    SmoothedAnimation { target:piece;  properties: "x,y"; velocity: 200 }
+                    SmoothedAnimation { target:piece;  properties: "x,y"; duration: 2000 }
                 }
                 PropertyAnimation {
                     target:piece
