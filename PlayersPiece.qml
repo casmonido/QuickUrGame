@@ -32,6 +32,10 @@ Piece {
                 enabled: false
                 hoverEnabled: false
             }
+            PropertyChanges {
+                target: parent
+                z: 10
+            }
         },
         State {
             name: "resettingParent"
