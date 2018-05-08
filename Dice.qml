@@ -29,9 +29,9 @@ Rectangle {
     Text {
         id: text
         anchors.horizontalCenter: parent.horizontalCenter
-        //anchors.verticalCenter: parent.verticalCenter
-        font.pointSize : board.unit/4
-        //bottomPadding: 3*board.unit/2
+        y: 5*board.unit/4
+        font.letterSpacing: board.unit/40
+        font.pointSize: board.unit/4
         text: "Roll"
     }
     states: [
