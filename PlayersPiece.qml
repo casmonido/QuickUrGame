@@ -12,7 +12,6 @@ Piece {
             ParentChange {
                 target: piece
                 parent: piece.parent
-
             }
             PropertyChanges {
                 target: clickable

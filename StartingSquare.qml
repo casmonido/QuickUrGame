@@ -5,7 +5,6 @@ Square {
     color:"transparent"
     width: 7*parent.unit
     anchors.horizontalCenter: parent.horizontalCenter
-    //property var constChildren
     function getX(p) {
         for (var i = 0; i < rep.count; ++i)
             if (rep.itemAt(i) === p)

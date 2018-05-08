@@ -14,11 +14,19 @@ Rectangle {
     function move(rolledNum) {
         parent.commandLeave.disconnect(goBackToBeginning)
         crossedPathLength += rolledNum
+        if (crossedPathLength >= board.whiteRects.length)
+        {
+            wholePathCrossed = true
+            if (typeName === "PlayersPiece")
+                game.playersScore++
+            else
+                game.opponentsScore++
+            return;
+        }
         state = "movingParent"
     }
     function goBackToBeginning(type)
     {
-        //console.log(type + " " + typeName)
         if (typeName !== type)
             return;
         crossedPathLength = 0;

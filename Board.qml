@@ -4,14 +4,7 @@ Rectangle {
     property var computerPieces: computerPiecesR
     function destinationSquare(p) {
         if (p.crossedPathLength >= whiteRects.length)
-        {
-            p.wholePathCrossed = true
-            if (p.typeName === "PlayersPiece")
-                game.playersScore++
-            else
-                game.opponentsScore++
             return endSquare;
-        }
         if (p.typeName === "PlayersPiece")
             return whiteRects[p.crossedPathLength];
         return blackRects[p.crossedPathLength];
@@ -46,6 +39,12 @@ Rectangle {
             model: 7
             ComputersPiece {
             }
+        }
+        function getX(p) {
+            for (var i = 0; i < computerPiecesR.count; ++i)
+                if (computerPiecesR.itemAt(i) === p)
+                return (i)*height + height/4
+            return computerPiecesR.length*height + height/4
         }
     }
     Square {//0
