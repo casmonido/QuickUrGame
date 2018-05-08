@@ -65,15 +65,6 @@ Piece {
             }
         }
     }
-    Connections {
-        target: endAnimation
-        onRunningChanged: {
-            if(!endAnimation.running)
-            {
-                game.nextTurn()
-            }
-        }
-    }
     transitions: [
         Transition {
             from: "*"
@@ -92,26 +83,28 @@ Piece {
             from: "*"
             to: "resettingParent"
             id: resettingAnimation
-            SequentialAnimation {
-                ParentAnimation {
-                    SmoothedAnimation {  properties: "x,y"; velocity: 200 }
-                }
+            ParentAnimation {
+                SmoothedAnimation {  properties: "x,y"; velocity: 200 }
             }
         },
         Transition {
             from: "*"
             to: "wholePathCrossed"
-            ParallelAnimation {
-                id: endAnimation
-                ParentAnimation {
-                    SmoothedAnimation { target:piece;  properties: "x,y"; duration: 2000 }
+            SequentialAnimation {
+                ParallelAnimation {
+                    ParentAnimation {
+                        SmoothedAnimation { target:piece;  properties: "x,y"; duration: 2000 }
+                    }
+                    PropertyAnimation {
+                        target:piece
+                        properties: "opacity"
+                        from: 1.0
+                        to: 0.0
+                        duration: 2000
+                    }
                 }
-                PropertyAnimation {
-                    target:piece
-                    properties: "opacity"
-                    from: 1.0
-                    to: 0.0
-                    duration: 2000
+                ScriptAction {
+                    script: game.nextTurn()
                 }
             }
         }
