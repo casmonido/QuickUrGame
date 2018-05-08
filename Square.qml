@@ -18,6 +18,13 @@ Rectangle {
             return width/4 - i*unit/40
         return width/4 + unit/40
     }
+    function getDebug(p) {
+        for (var i = 0; i < children.length; ++i)
+            if (children[i] === p)
+                 return i;
+        return "";
+    }
+
     function getY(p) {
         for (var i = 0; i < children.length; ++i)
             if (children[i] === p)

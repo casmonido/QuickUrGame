@@ -32,6 +32,7 @@ Rectangle {
         id: sw
         anchors.top: parent.top
         Repeater {
+            id: rep
             model: 7
             PlayersPiece {
             }
