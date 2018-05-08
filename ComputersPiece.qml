@@ -36,16 +36,22 @@ Piece {
         State {
             when: wholePathCrossed
             name: "wholePathCrossed"
-            ParentChange {
-                target: piece
-                parent: piece.parent
-            }
+            extend: "movingParent"
         }
     ]
     Connections {
         target: xyAnimationC
         onRunningChanged: {
             if(!xyAnimationC.running)
+            {
+                game.playersTurn = true
+            }
+        }
+    }
+    Connections {
+        target: endAnimation
+        onRunningChanged: {
+            if(!endAnimation.running)
             {
                 game.playersTurn = true
             }
@@ -77,13 +83,12 @@ Piece {
             from: "*"
             to: "wholePathCrossed"
             ParallelAnimation {
-                PropertyAnimation {
-                    properties: "radius"
-                    from: board.unit/2
-                    to: 0
-                    duration: 2000
+                id: endAnimation
+                ParentAnimation {
+                    SmoothedAnimation { target:piece;  properties: "x,y"; velocity: 200 }
                 }
                 PropertyAnimation {
+                    target:piece
                     properties: "opacity"
                     from: 1.0
                     to: 0.0

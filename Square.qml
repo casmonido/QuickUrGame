@@ -15,8 +15,8 @@ Rectangle {
     function getX(p) {
         for (var i = 0; i < children.length; ++i)
             if (children[i] === p)
-            return width/4 - i*unit/40
-        return width/4 + unit/40
+            return width/4 - (children.length-1-i)*unit/40
+        return width/4 - (children.length)*unit/40
     }
     function getDebug(p) {
         for (var i = 0; i < children.length; ++i)
@@ -28,8 +28,8 @@ Rectangle {
     function getY(p) {
         for (var i = 0; i < children.length; ++i)
             if (children[i] === p)
-                return height/4 - i*unit/40
-        return height/4 + unit/40
+                return height/4 - (children.length-1-i)*unit/40
+        return height/4 - (children.length)*unit/40
     }
     x: bx*parent.unit + (bx+1)*parent.margin
     y: (by+1)*parent.unit + (by+1)*parent.margin
