@@ -12,12 +12,45 @@ Item {
         text: parent.endText
         visible: true
         anchors.centerIn: parent
-        font.pixelSize: 0
-        PropertyAnimation {
+        font.pixelSize: 0 //
+        color: "#bc982d"
+        z: 100
+        id: infoWhoWon
+        SequentialAnimation {
             id: showWhoWon
-            properties: "font.pixelSize"
-            from: 0
-            to: board.unit*10
+            ParallelAnimation {
+                PropertyAnimation {
+                    target: infoWhoWon
+                    properties: "font.pixelSize"
+                    from: 0
+                    to: mainWindow.height/3
+                    duration: 10000
+                }
+                PropertyAnimation {
+                    target: infoWhoWon
+                    properties: "opacity"
+                    from: 0
+                    to: 1.0
+                    duration: 5000
+                }
+            }
+            SequentialAnimation {
+                PropertyAnimation {
+                    target: infoWhoWon
+                    to: "#b51010"
+                    properties: "color"
+                    from: "#bc982d"
+                    duration: 2000
+                }
+                PropertyAnimation {
+                    target: infoWhoWon
+                    properties: "color"
+                    to: "#bc982d"
+                    from: "#b51010"
+                    duration: 2000
+                }
+                loops: Animation.Infinite
+            }
         }
     }
     function nextTurn()
@@ -36,7 +69,7 @@ Item {
         }
         //if (opponentsScore == 7)
         //{
-            endText = "You lost!"
+            endText = "You lost!:("
             state = "gameEnd"
             return;
         //}
