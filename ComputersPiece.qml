@@ -25,8 +25,8 @@ Piece {
             ParentChange {
                 target: piece
                 parent: board.destinationSquare(piece)
-                x: parent.width/4
-                y: parent.height/4
+                x: parent.getX(piece)
+                y: parent.getY(piece)
             }
         },
         State {

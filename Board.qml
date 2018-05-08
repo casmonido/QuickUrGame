@@ -56,8 +56,14 @@ Rectangle {
         function getX(p) {
             for (var i = 0; i < computerPiecesR.count; ++i)
                 if (computerPiecesR.itemAt(i) === p)
-                return (i)*height + height/4
+                    return (i)*height + height/4
             return computerPiecesR.length*height + height/4
+        }
+        function getDebug(p) {
+            for (var i = 0; i < computerPiecesR.count; ++i)
+                if (computerPiecesR.itemAt(i) === p)
+                return i
+            return "";
         }
     }
     Square {//0
