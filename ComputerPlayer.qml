@@ -10,7 +10,7 @@ Item {
     function move()
     {
         dice.roll()
-        if (dice.state !== "rolled")
+        if (dice.rolledNum <= 0)
             return;
         afterRollTimer.start()
     }

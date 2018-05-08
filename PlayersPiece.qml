@@ -118,7 +118,7 @@ Piece {
         onReleased: {
             cursorShape = Qt.ArrowCursor
             if (!game.pieceMoving && piece.state != "opponentsTurn"
-                    && dice.state == "rolled")
+                    && dice.state == "rolled" && dice.rolledNum > 0)
             {
                 //console.log("X "+piece.state)
                 piece.move(dice.rolledNum)

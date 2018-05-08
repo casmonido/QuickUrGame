@@ -9,14 +9,13 @@ Rectangle {
         rolledNum = 0
         for (var i=0; i<4; ++i)
             rolledNum += dieRepeater.itemAt(i).roll()
-        if (rolledNum > 0)
-            state = "rolled";
-        else
-            timer.start()
+        state = "rolled";
+        if (rolledNum <= 0)
+        timer.start()
     }
     Timer {
         id:timer
-        interval: 1000; repeat: false
+        interval: 2000; repeat: false
         onTriggered: game.nextTurn()
     }
     Row {
@@ -42,11 +41,6 @@ Rectangle {
             PropertyChanges { target: clickable; enabled:true; hoverEnabled : true }
         },
         State {
-            name: "rolledZero"
-            PropertyChanges { target: text; text: "Rolled number: 0" }
-            PropertyChanges { target: clickable; enabled:false; hoverEnabled : false }
-        },
-        State {
             name: "rolled"
             PropertyChanges { target: text; text: "Rolled number: " + rolledNum }
             PropertyChanges { target: clickable; enabled:false; hoverEnabled : false }
@@ -63,7 +57,7 @@ Rectangle {
         }
         onReleased: {
             cursorShape = Qt.ArrowCursor
-            if (dice.state != "rolled")
+            if (dice.state !== "rolled")
                 dice.roll()
         }
         onEntered: {
