@@ -14,10 +14,4 @@ Square {
     function getY(p) {
         return height/4
     }
-    function getDebug(p) {
-        for (var i = 0; i < rep.count; ++i)
-            if (rep.itemAt(i) === p)
-                return (i)
-        return "";
-    }
 }

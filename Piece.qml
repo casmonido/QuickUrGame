@@ -34,8 +34,4 @@ Rectangle {
         parent.commandLeave.disconnect(goBackToBeginning)
         state = "resettingParent"
     }
-    Text {
-        anchors.fill: parent
-        text: parent.parent.getDebug(piece)
-    }
 }
