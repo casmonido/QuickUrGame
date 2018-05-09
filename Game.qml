@@ -13,7 +13,7 @@ Item {
         visible: true
         anchors.centerIn: parent
         font.pixelSize: 0 //
-        color: "#bc982d"
+        color: "#0da000"
         z: 100
         id: infoWhoWon
         SequentialAnimation {
@@ -23,7 +23,7 @@ Item {
                     target: infoWhoWon
                     properties: "font.pixelSize"
                     from: 0
-                    to: mainWindow.height/3
+                    to: mainWindow.height/2
                     duration: 10000
                 }
                 PropertyAnimation {
@@ -37,16 +37,16 @@ Item {
             SequentialAnimation {
                 PropertyAnimation {
                     target: infoWhoWon
-                    to: "#b51010"
+                    to: "#7401ad"
                     properties: "color"
-                    from: "#bc982d"
+                    from: "#0da000"
                     duration: 2000
                 }
                 PropertyAnimation {
                     target: infoWhoWon
                     properties: "color"
-                    to: "#bc982d"
-                    from: "#b51010"
+                    to: "#0da000"
+                    from: "#7401ad"
                     duration: 2000
                 }
                 loops: Animation.Infinite
@@ -67,12 +67,12 @@ Item {
             state = "gameEnd"
             return;
         }
-        //if (opponentsScore == 7)
-        //{
+        if (opponentsScore == 7)
+        {
             endText = "You lost!:("
             state = "gameEnd"
             return;
-        //}
+        }
         dice.state = "notRolled";
         if (!playersTurn)
             computerPlayer.move();
